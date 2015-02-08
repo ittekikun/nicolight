@@ -15,22 +15,24 @@
 
 	<body>
 		<table class="table">
-			<caption>ニコニコ動画ランキング</caption>
+			<caption>ニコニコ動画ランキング(毎時)</caption>
 				<thead>
 			        <tr>
-			          <th>#</th>
-			          <th>サムネイル</th>
-			          <th>動画名</th>
-			          <th>なんかよくわからない日時</th>
+			          <th>順位</th>
+			          <th width="100">サムネイル</th>
+			          <th width="70%">動画名</th>
+			          <th>投稿日時</th>
 			        </tr>
 				</thead>
 		      <tbody>
-		      <?php
-				$rss=simplexml_load_file('http://www.nicovideo.jp/ranking/fav/daily/all?rss=2.0&lang=ja-jp');
+			<?php
+			require 'debuglib.php';
+
+				$rss=simplexml_load_file('http://www.nicovideo.jp/ranking/fav/hourly/all?rss=2.0&lang=ja-jp');
 				$i=0;
 				foreach($rss->channel->item as $item)
 				{
-					if($i++==100){
+					if($i++==15){
 						break;
 					}
 					$link=$item->link;
@@ -42,9 +44,20 @@
 
 					$date=date('Y/m/d H:i', strtotime($item->pubDate));
 
-					print '<tr><th scope="row">'.$i.'位</th><td><img src="'.$img_url.'" width="70" /></td><td><a href="'.$link.'" >'.$title.'</a></td><td>'.$date.'</td>';
+					$id = strstr($link, "sm");
+
+					$xml = simplexml_load_file('http://ext.nicovideo.jp/api/getthumbinfo/'.$id.'');
+
+
+					print '<tr><th scope="row">'.$i.'位</th><td><img src="'.$img_url.'" width="100" /></td><td><a href="'.$link.'" >'.$title.'</a></br>
+							<div class="well well-sm">'.$xml->thumb->description.'</div>
+			        		<span class="label label-primary">再生時間:'.$xml->thumb->length.'</span> <span class="label label-success">再生回数:'.$xml->thumb->view_counter.'</span> <span class="label label-success">コメント回数:'.$xml->thumb->comment_num.'</span> <span class="label label-success">マイリスト回数:'.$xml->thumb->mylist_counter.'</span></td>
+							<td>'.$xml->thumb->first_retrieve.'</td>';
+
 
 					print(PHP_EOL);
+
+
 		        }
 		      ?>
 		      </tbody>
