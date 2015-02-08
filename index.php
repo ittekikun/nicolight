@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="ja">
 	<head>
+
+	//CSSはhttp://getbootstrap.com/の物です。
+	//ここ見て良さ気なの見つけて下さい
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
@@ -32,7 +35,8 @@
 				$i=0;
 				foreach($rss->channel->item as $item)
 				{
-					if($i++==15){
+					//20位まで表示
+					if($i++==20){
 						break;
 					}
 					$link=$item->link;
@@ -46,8 +50,7 @@
 
 					$id = strstr($link, "sm");
 
-					$xml = simplexml_load_file('http://ext.nicovideo.jp/api/getthumbinfo/'.$id.'');
-
+					$xml = simplexml_load_file('http://ext.nicovideo.jp/api/getthumbinfo/'.$id.'');//ここで動画一つ一つの詳細情報を取得
 
 					print '<tr><th scope="row">'.$i.'位</th><td><img src="'.$img_url.'" width="100" /></td><td><a href="'.$link.'" >'.$title.'</a></br>
 							<div class="well well-sm">'.$xml->thumb->description.'</div>
