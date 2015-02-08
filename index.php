@@ -17,7 +17,7 @@
           <th>#</th>
           <th>サムネイル</th>
           <th>動画名</th>
-          <th>アップロード日時</th>
+          <th>なんかよくわからない日時</th>
         </tr>
       </thead>
       <tbody>
@@ -26,7 +26,7 @@ $rss=simplexml_load_file('http://www.nicovideo.jp/ranking/fav/daily/all?rss=2.0&
 $i=0;
 foreach($rss->channel->item as $item)
 {
-	if($i++==10){
+	if($i++==100){
 		break;
 	}
 	$link=$item->link;
