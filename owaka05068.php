@@ -1,3 +1,3 @@
 <?php
-	//fuck git！
+	//fuck git!
 ?>
