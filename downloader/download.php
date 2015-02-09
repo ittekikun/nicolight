@@ -17,7 +17,7 @@ class Download{
 	}
 
 	private function login(){
-		$url = curl_init("https://secure.nicovide.jp/secure/login?site=niconico");
+		$url = curl_init("https://secure.nicovideo.jp/secure/login?site=niconico");
 		curl_setopt($url, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($url, CURLOPT_FOLLOWLOCATION, true);
 		curl_setopt($url, CURLOPT_SSL_VERIFYPEER, false);

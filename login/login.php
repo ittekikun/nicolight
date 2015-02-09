@@ -57,6 +57,7 @@ class Login{
 		curl_close($url);
 
 		$pattern = '/user\_session[^@]*user\_session/';
+		//ログインが正常にできたか判定
 		//３項演算子に変えたほうがいい？
 		if(!preg_match($pattern,file_get_contents($this->cookie, FILE_USE_INCLUDE_PATH))){
 			return false;
