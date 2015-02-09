@@ -28,12 +28,11 @@
 			<?php
 			require 'debuglib.php';
 
-
 			//CSSはhttp://getbootstrap.com/の物です。
 			//ここ見て良さ気なの見つけて下さい
 
 				$rss = simplexml_load_file('http://www.nicovideo.jp/ranking/fav/hourly/all?rss=2.0&lang=ja-jp');
-				$i=0;
+				$i = 0;
 				foreach($rss->channel->item as $item)
 				{
 					//20位まで表示
