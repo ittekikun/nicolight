@@ -1,7 +1,6 @@
 <?php
-$search_query=$_POST["que"];
-$search_filed=$_POST["field"];
-
+//searchingに入れる検索ワードと(キーワード(keyword)|タグ(tags))必要
+//出力はgetterで
 class Search{
 	private $result = "";
 
@@ -20,6 +19,7 @@ class Search{
 	}
 
 	function searching($query,$filed){
+		$query = addslashes($query);
 		if($filed == "keyword"){
 			$filed_var = '["title","description","tags"]';
 		}
@@ -42,19 +42,19 @@ class Search{
 			"issuer" : "testaplication"
 		}';
 		/* queのオプション
-		 	"filters" : "",
-			"sort_by" : "",
-			"order" : "",
-			"from" : "",
-			"size" : "",
-		 */
+		 "filters" : "",
+		"sort_by" : "",
+		"order" : "",
+		"from" : "",
+		"size" : "",
+		*/
 		$opts = array(
-			'http' =>
-			array(
-				'method'=>"POST",
-				'header'=>"Content-Type: application/json; charset=uft-8\r\n",
-				'content'=>$que
-			)
+				'http' =>
+				array(
+						'method'=>"POST",
+						'header'=>"Content-Type: application/json; charset=uft-8\r\n",
+						'content'=>$que
+				)
 		);
 		$context = stream_context_create($opts);
 		$res = file_get_contents('http://api.search.nicovideo.jp/api/snapshot/', false, $context);
@@ -63,7 +63,7 @@ class Search{
 		$var_json = '{"set'.$body[0];
 		$var_stdClass = json_decode($var_json);
 		foreach($var_stdClass->values as $var){
-// 			echo "<p>動画ID:".$var->cmsid." コメント数:".$var->comment_counter."</p>";
+			// 			echo "<p>動画ID:".$var->cmsid." コメント数:".$var->comment_counter."</p>";
 			$time = $this->time($var->length_seconds);
 			$this->result = $this->result.'<tr><td><img src="'.$var->thumbnail_url.'" width="100" />
 					</td><td><a href="http://www.nicovideo.jp/watch/'.$var->cmsid.'">'.$var->title.'</a></br>
@@ -72,27 +72,3 @@ class Search{
 		}
 	}
 }
-$search = new Search();
-$search->searching($search_query,$search_filed);
-?>
-<!DOCTYPE html>
-<html lang="ja">
-	<head>
-		<title>動画検索</title>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<table>
-			<caption>検索結果</caption>
-				<thead>
-					<tr>
-						<th width="100">サムネイル</th>
-						<th width="70%">動画名</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php echo $search->getter();?>
-				</tbody>
-		</table>
-	</body>
-</html>
