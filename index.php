@@ -20,7 +20,7 @@
 			        <tr>
 			          <th>順位</th>
 			          <th width="100">サムネイル</th>
-			          <th width="70%">動画名</th>
+			          <th width="80%">動画名</th>
 			          <th>投稿日時</th>
 			        </tr>
 				</thead>
