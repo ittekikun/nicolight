@@ -46,7 +46,7 @@
 					$first=strpos($description, 'src="')+5;//srcの5文字分
 					$last=strpos($description, 'width="94"')-2;//空白と"の分
 					$img_url=substr($description, $first,$last-$first);//指定の場所から指定の文字数分を引いた文字を抽出、画像のURL取得
-
+					$title = preg_split('/^第[1-9]*位：/', $title, -1, PREG_SPLIT_NO_EMPTY);
 					$date=date('Y/m/d H:i', strtotime($item->pubDate));
 
 
@@ -65,7 +65,7 @@
 
 					$xml = simplexml_load_file('http://ext.nicovideo.jp/api/getthumbinfo/'.$id.'');//ここで動画一つ一つの詳細情報を取得
 
-					print '<tr><th scope="row">'.$i.'位</th><td><img src="'.$img_url.'" width="100" /></td><td><a href="'.$link.'" >'.$title.'</a></br>
+					print '<tr><th scope="row">'.$i.'位</th><td><img src="'.$img_url.'" width="100" /></td><td><a href="'.$link.'" >'.$title[0].'</a></br>
 							<div class="well well-sm">'.$xml->thumb->description.'</div>
 			        		<span class="label label-primary">再生時間:'.$xml->thumb->length.'</span> <span class="label label-success">再生回数:'.$xml->thumb->view_counter.'</span> <span class="label label-success">コメント回数:'.$xml->thumb->comment_num.'</span> <span class="label label-success">マイリスト回数:'.$xml->thumb->mylist_counter.'</span></td>
 							<td>'.$xml->thumb->first_retrieve.'</td>';
