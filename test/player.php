@@ -24,7 +24,10 @@
 
 <video id="example_video_1" class="video-js vjs-default-skin" controls preload="auto" width="854" height="480" data-setup="{}">
   <?php
-	$id = $_GET['test'];
+  require_once('download.php');
+
+  $id = getVideo($_GET["id"]);
+  //$download->cookie_free();
 	//http://localhost/nicolight_local/test/player.php?test=http://smile-pso00.nicovideo.jp/smile?m=25518258.16111
 	print "<source src='$id' type='video/mp4'>";
 	?>
@@ -35,7 +38,6 @@
 videojs("example_video_1").ready(function(){
 	  var myPlayer = this;
 
-	  // EXAMPLE: Start playing the video.
 	  myPlayer.volume(0.3);
 
 	});
