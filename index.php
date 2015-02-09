@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
 	<head>
-
-	//CSSはhttp://getbootstrap.com/の物です。
-	//ここ見て良さ気なの見つけて下さい
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
@@ -31,7 +28,11 @@
 			<?php
 			require 'debuglib.php';
 
-				$rss=simplexml_load_file('http://www.nicovideo.jp/ranking/fav/hourly/all?rss=2.0&lang=ja-jp');
+
+			//CSSはhttp://getbootstrap.com/の物です。
+			//ここ見て良さ気なの見つけて下さい
+
+				$rss = simplexml_load_file('http://www.nicovideo.jp/ranking/fav/hourly/all?rss=2.0&lang=ja-jp');
 				$i=0;
 				foreach($rss->channel->item as $item)
 				{
@@ -48,7 +49,19 @@
 
 					$date=date('Y/m/d H:i', strtotime($item->pubDate));
 
-					$id = strstr($link, "sm");
+
+					if(strstr($link, "sm") != null)
+					{
+						$id = strstr($link, "sm");
+					}
+					else if(strstr($link, "so") != null)
+					{
+						$id = strstr($link, "so");
+					}
+					else if(strstr($link, "nm") != null)
+					{
+						$id = strstr($link, "nm");
+					}
 
 					$xml = simplexml_load_file('http://ext.nicovideo.jp/api/getthumbinfo/'.$id.'');//ここで動画一つ一つの詳細情報を取得
 
