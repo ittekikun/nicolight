@@ -17,7 +17,7 @@ class Download{
 	}
 
 	private function login(){
-		$url = curl_init("https://secure.nicovideo.jp/secure/login?site=niconico");
+		$url = curl_init("https://secure.nicovide.jp/secure/login?site=niconico");
 		curl_setopt($url, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($url, CURLOPT_FOLLOWLOCATION, true);
 		curl_setopt($url, CURLOPT_SSL_VERIFYPEER, false);
@@ -26,11 +26,22 @@ class Download{
 		curl_setopt($url, CURLOPT_POST, true);
 		curl_setopt($url, CURLOPT_POSTFIELDS, $this->account);
 
-		if(curl_exec($url) === false){
+		if(!curl_exec($url)){
 			echo "Curl error".curl_error($url);
 		}
+
 		curl_close($url);
+
+		$pattern = '/user\_session[^@]*user\_session/';
+		//３項演算子に変えたほうがいい？
+		if(!preg_match($pattern,file_get_contents($this->cookie, FILE_USE_INCLUDE_PATH))){
+			return false;
+		}
+		else{
+			return true;
+		}
 	}
+
 
 	function getVideo($v){
 		$id = $v;
@@ -50,6 +61,7 @@ class Download{
 		}
 		else{
 			echo "VIDEO URL NOT FOUND</br>";
+			return null;
 		}
 		return $video[1];
 	}
