@@ -20,6 +20,7 @@ class Search{
 	}
 
 	function searching($query,$filed){
+		$query = addslashes($query);
 		if($filed == "keyword"){
 			$filed_var = '["title","description","tags"]';
 		}
