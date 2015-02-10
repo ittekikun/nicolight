@@ -1,5 +1,4 @@
 <?php
-session_set_cookie_params(0,'/nicolight/',$httponly=true);
 $email = $_POST["email"];
 $password = $_POST["password"];
 class Login{
@@ -12,32 +11,41 @@ class Login{
 		$this->account["mail"] = $mail;
 		$this->account["password"] = $pass;
 		$this->login_session();
-		session_write_close();
+
 	}
 	private function login_session(){
 		session_start();
 		$login_url = 'login.html';//ログインページのURLが変わったらここを変更
-		$top_url = 'top.php';//ログイン後最初に行くページのURLが変わったらここを変更
-		if(!isset($_COOKIE["PHPSESSID"])){
-			$this->cookie = tempnam(sys_get_temp_dir(),'cke');
-			function movepage($url){
-				echo '<script>document.location = "'.$url.'"</script>';
-			}
-			if($this->login()){
-				echo '<script>alert("ログインしました\nnicolightを離れる際は必ずログアウトをお願いします！");</script>';
-				movepage($top_url);
-			}
-			else{
-				echo '<script>alert("ログインに失敗しました\nログイン画面に戻ります");</script>';
-				movepage($login_url);
-			}
-			$_SESSION['cke'] = $this->cookie;
+		$top_url = 'TOP.html';//ログイン後最初に行くページのURLが変わったらここを変更
+		function movepage($url){
+			echo '<script>document.location = "'.$url.'"</script>';
 		}
-		//今現在の使用上これが現れる可能性は低いはず(現れたら教えて)
-		else{
-			echo '<script>alert("既にログインしています");</script>';
+		//if(!isset($_COOKIE["PHPSESSID"])){
+		$this->cookie = tempnam(sys_get_temp_dir(),'cke');
+
+		if($this->login()){
+			echo '<script charset="utf-8">alert("login complete\nPlease LogOut When left this site");</script>';
+			$_SESSION["cke"] = $this->cookie;
+			session_write_close();
 			movepage($top_url);
 		}
+		else{
+			echo '<script charset="utf-8">alert("login failed\nMove LogIn Page");</script>';
+			$_SESSION["cke"] = $this->cookie;
+			session_write_close();
+			movepage($login_url);
+		}
+
+	//	}
+// 		//今現在の使用上これが現れる可能性は低いはず(現れたら教えて)
+// 		else{
+// 			echo '<script charset="utf-8">alert("'.$_COOKIE["PHPSESSID"].'already login");</script>';
+// 			echo '<script>alert("SID:'.session_id().'\nCookie:'.$_COOKIE["PHPSESSID"].'")</script>';
+// 			session_write_close();
+// 			movepage($top_url);
+// 		}
+
+
 	}
 	//ログインできたらTRUE,失敗したらFALSE
 	private function login(){
@@ -66,18 +74,6 @@ class Login{
 			return true;
 		}
 	}
-	/*
-	function logout(){
-		$this->cookie_free();
-	}
 
-	function cookie_get(){
-		return $this->cookie;
-	}
-
-	private function cookie_free(){
-		unlink($this->cookie);
-	}
-	*/
 }
 $login = new Login($email,$password);
