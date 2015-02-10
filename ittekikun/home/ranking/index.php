@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html lang="ja">
 	<head>
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-		<title>nicolight(仮)</title>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+		<script src="../js/bootstrap.min.js"></script>
+		<link href="../css/bootstrap.min.css" rel="stylesheet">
+		<title>ランキング</title>
 		<meta charset="utf-8">
 	</head>
 
 	<body>
+
+	<div class="navbar navbar-default">
+  <div class="container">
+    <a class="navbar-brand" href="#">nicolight</a>
+    <ul class="nav navbar-nav">
+      <li><a href="../">Home</a></li>
+      <li class="active"><a href="index.php">ランキング</a></li>
+    </ul>
+  </div>
+</div>
+
+
+<div class="container">
+<div class="row">
 		<table class="table">
 			<caption>ニコニコ動画ランキング(毎時)</caption>
 				<thead>
@@ -26,8 +35,6 @@
 				</thead>
 		      <tbody>
 			<?php
-			require 'debuglib.php';
-
 			//CSSはhttp://getbootstrap.com/の物です。
 			//ここ見て良さ気なの見つけて下さい
 
@@ -77,5 +84,7 @@
 		      ?>
 		      </tbody>
 		</table>
+		</div>
+	</div> <!-- /container -->
 	</body>
 </html>
