@@ -15,19 +15,19 @@ class Logout{
 				unlink($this->cookie);
 				$_SESSION = array();
 				session_destroy();
-				echo '<script charset="utf-8">alert("'.session_id().'")</script>';
-				echo '<script charset="utf-8">alert("log out success")</script>';
-				echo '<script>location.replace("../login/login.html")</script>';
+				echo '<script charset="utf-8">alert("'.session_id().'");</script>';
+				echo '<script charset="utf-8">alert("log out success");</script>';
+				echo '<script>location.replace("../login/login.html");</script>';
 			}
 			else{
 
 				echo '<script>alert("NOT FOUNDE COOKIE")</script>';
-				echo '<script>location.replace("../login/login.html")</script>';
+				echo '<script>location.replace("../login/login.html");</script>';
 			}
 		}
 		else{
 			echo '<script>alert("NOT FOUNDE SESSION")</script>';
-			echo '<script>location.replace("../login/login.html")</script>';
+			echo '<script>location.replace("../login/login.html");</script>';
 		}
 	}
 }
