@@ -1,7 +1,7 @@
 <?php
 function judge(){
 	if(isset($_COOKIE["PHPSESSID"])){
-		seddion_id($_COOKIE["PHPSESSID"]);
+		session_id($_COOKIE["PHPSESSID"]);
 		session_start();
 		if(isset($_SESSION["cke"])){
 			echo "<p>Logined</p>";

@@ -16,7 +16,7 @@ class Login{
 	private function login_session(){
 		session_start();
 		$login_url = 'login.html';//ログインページのURLが変わったらここを変更
-		$top_url = 'TOP.html';//ログイン後最初に行くページのURLが変わったらここを変更
+		$top_url = 'toppage.html';//ログイン後最初に行くページのURLが変わったらここを変更
 		function movepage($url){
 			echo '<script>document.location = "'.$url.'"</script>';
 		}
