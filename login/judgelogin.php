@@ -4,7 +4,7 @@ function judge(){
 		session_id($_COOKIE["PHPSESSID"]);
 		session_start();
 		if(isset($_SESSION["cke"])){
-			echo "<p>Logined</p>";
+// 			echo "<p>Logined</p>";
 			return true;
 		}
 		else{

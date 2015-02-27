@@ -8,5 +8,5 @@ if(judge()){
 	echo $download->getVideo($search_query);
 }
 echo '<form action="../logout/logout.php" method="post">
-		<input type="submit" value="ログアウト">
+		<input type="submit" value="log out">
 	</form>';

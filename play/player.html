@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//vjs.zencdn.net/4.11.4/video.js"></script>
+<link href="//vjs.zencdn.net/4.11.4/video-js.css" rel="stylesheet" type="text/css">
+<link href="player.css" rel="stylesheet" type="text/css">
+<!--
+<script src="player.js"></script>
+-->
+<script src="download.js"></script>
+</head>
+<body onload="geturl();">
+
+<video id="example_video_1" class="video-js vjs-default-skin" controls preload="auto" width="854" height="480" data-setup="{}">
+
+<source class="video" src='default' type='video/mp4'>
+</video>
+
+<!--  <div id="debag"></div> -->
+ <div id="overlay">ついでに実装</div>
+ <!--以下のスクリプトは外部ファイルに以降予定 -->
+<!--
+<script>
+videojs("example_video_1").ready(function(){
+	  var myPlayer = this;
+	  myPlayer.volume(0.3);
+	});
+var overlay= document.getElementById('overlay');
+var video= document.getElementById('v');
+video.addEventListener('progress', function() {
+  var show= video.currentTime>=5 && video.currentTime<10;
+  overlay.style.visibility= show? 'visible' : 'visible';
+}, false);
+</script>
+
+-->
+<form action="../logout/logout.php" method="post">
+	<input type="submit" value="ログアウト">
+</form>
+</body>
+</html>
