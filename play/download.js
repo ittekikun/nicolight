@@ -8,11 +8,10 @@ function geturl(){
 		url: url,
 		data: param,
 		success: function(data){
-//			$("#debag").html(data);
 			$("video").attr("src",data);
 		}
 	});
-}
+	}
 
 function getid(){
 	if(location.search.length > 1){

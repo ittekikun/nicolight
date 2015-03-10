@@ -7,13 +7,13 @@
 <script src="//vjs.zencdn.net/4.11.4/video.js"></script>
 <link href="//vjs.zencdn.net/4.11.4/video-js.css" rel="stylesheet" type="text/css">
 <link href="player.css" rel="stylesheet" type="text/css">
+<script src="download.js"></script>
 <!--
 <script src="player.js"></script>
+<script src="download.js">geturl();</script>
 -->
-<script src="download.js"></script>
 </head>
 <body onload="geturl();">
-
 <video id="example_video_1" class="video-js vjs-default-skin" controls preload="auto" width="854" height="480" data-setup="{}">
 
 <source class="video" src='default' type='video/mp4'>
@@ -40,5 +40,6 @@ video.addEventListener('progress', function() {
 <form action="../logout/logout.php" method="post">
 	<input type="submit" value="ログアウト">
 </form>
+<button type=button onclick="location.href='../login/toppage.html'">TOPページ</button>
 </body>
 </html>

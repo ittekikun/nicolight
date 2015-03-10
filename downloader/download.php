@@ -28,7 +28,9 @@ class Download{
 			return false;
 		}
 	}
-
+	function getCookie(){
+		echo file_get_contents($this->cookie);
+	}
 }
 // $download = new Download();
 // $download->getVideo("sm8702");

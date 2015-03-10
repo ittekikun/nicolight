@@ -6,12 +6,20 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="toppage.js"></script>
 </head>
-<body>
-	<p>ログイン完了</p>
+<body onbeforeunload="return load();">
+	<h1>ログイン完了</h1>
+	<h2>(注意)事前にニコニコ動画にログインしてください</h2>
+	<p><a href="../search/search.html">動画検索</a></p>
 	<p><a href="../search/idsearch.html">動画検索(ID)</a></p>
 	<p>動画ID:<input id="mvid" type="text">
-		<button type=button onclick="move();">動画再生</button>
+		<button type=button onclick="access();">動画再生</button>
 	</p>
+	<!--デバッグ用-->
+	<form action="../play/geturl.php" method="post">
+	<p>動画ID:<input name="mvid"  type="text">
+		<input type="submit" value="動画URL(デバッグ)">
+	</p>
+	</form>
 	<form action="../logout/logout.php" method="post">
 		<input type="submit" value="ログアウト">
 	</form>
